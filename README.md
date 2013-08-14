@@ -24,7 +24,7 @@ In addition, you will need one of the server side libraries to sign your upload 
 
 Before angular.cloudinary.js is loaded, make sure the following JS variable is set:
 
-````
+````javascript
 CLOUDINARY_CONFIG = {"api_key": "YOUR_API_KEY", "cloud_name": "YOUR_CLOUD_NAME"};
 ````
 
@@ -50,7 +50,7 @@ The WEBP format will automatically be used when it is supported.
 
 Using the upload tag is a bit more complicated. You will first need to a signed params object from the server, and I suggest retrieving the upload URL at the same time. To do this we have created a service like this:
 
-````
+````javascript
     angular.module('myCloudinary')
         .factory('cloudinary', function($http) {
             return {
@@ -75,7 +75,7 @@ Using the upload tag is a bit more complicated. You will first need to a signed 
 This service is called like this:
 
 
-````
+````javascript
     cloudinary.getUploadAttrs(tags, function(data) {
 
         data.uploadDone = function(e, cloudinaryResponse) {
@@ -84,12 +84,13 @@ This service is called like this:
 
         $scope.cloudinaryData = data;
     }
+````
 
 At this point, cloudinaryData will look something like the following. Note that params MUST
 be sent and signed by the server, and I recommend retrieving the url from the server as well, although that is not a requirement. You should add the uploadStart and uploadDone callbacks on the client side, 
 after you have retrieved signed params.
 
-````
+````javascript
 cloudinaryData = {
     url: https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/auto/upload
     params : {
