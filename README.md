@@ -28,7 +28,7 @@ Before angular.cloudinary.js is loaded, make sure the following JS variable is s
 CLOUDINARY_CONFIG = {"api_key": "YOUR_API_KEY", "cloud_name": "YOUR_CLOUD_NAME"};
 ````
 
-Then load the library.
+Then load the library with a regular script' tag or as an AMD module.
 
 ## Usage ######################################################################
 
