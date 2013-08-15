@@ -48,17 +48,24 @@
          * JavaScript:
          *
          *  cloudinaryData = {
-         *    url: https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/auto/upload
-         *    params : {
+         *    url: 'https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/auto/upload',
+         *    formData : {
          *       timestamp : 1375363550;
          *       tags : sampleTag,
          *       api_key : YOUR_API_KEY,
          *       callback : URL TO cloudinary_cors.html,
-         *       signature : '53ebfe998d4018c3329aba08517d26f7408851a5'
-         *    },
-         *    uploadStart : function(e, response) { },
-         *    uploadDone : function(e, response) { }
+         *       signature : '53ebfe998d4018c3329aba08237d23f7458851a5'
+         *    }
+         *    start : function() { ... },
+         *    progress : function() { ... },
+         *    done : function() { ... }
          *  }
+         *
+         *  The start, progress, and done functions are optional callbacks. Other jquery.fileupload callbacks
+         *  should be supported, but are untested.
+         *
+         *  Functions are automatically wrapped in scope.$apply() so it is safe to change variable values
+         *  in your callbacks.
          *
          */
         return {
@@ -72,27 +79,33 @@
             link : function(scope, element, attrs) {
                 scope.$watch('data', function(data) {
                     if (data) {
-                        element.cloudinary_fileupload({
-                            formData: data.params,
-                            url : data.url,
-                            headers: {"X-Requested-With": "XMLHttpRequest"}
-                        });
 
-                        if (data.uploadStart) {
-                            element.bind('fileuploadstart', function(e, cloudinaryResponse) {
+                        var defaultData = {
+                            headers: {"X-Requested-With": "XMLHttpRequest"},
+                        };
+
+
+                        var wrapWithApply = function(callback) {
+                            return function(e, cbdata) {
                                 scope.$apply(function() {
-                                    data.uploadStart(e, cloudinaryResponse);
+                                    callback(e, cbdata);
                                 });
-                            });
+                            }
+                        }
+                        // This wraps each function in data with an angular $apply()
+                        // so that changes to scoped variables will be recognized.
+                        for (var propt in data) {
+                            if (typeof(data[propt]) === "function") {
+                                data[propt] = wrapWithApply(data[propt]);
+                            }
                         }
 
-                        if (data.uploadDone) {
-                            element.bind('cloudinarydone', function (e, cloudinaryResponse) {
-                                scope.$apply(function() {
-                                    data.uploadDone(e, cloudinaryResponse);
-                                });
-                            });
-                        }
+                        var completeData = angular.extend(defaultData, data);
+
+                        element.cloudinary_fileupload(
+                            completeData
+                        );
+
                     }
                 });
             }
