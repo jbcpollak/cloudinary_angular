@@ -17,7 +17,7 @@
      *
      * HTML:
      *
-     * <img cl-image class="..." id="..."  height="..." data-crop="fit" public-id="{{cloudinaryPublicId}}"/>
+     * <img cl-image class="..." id="..."  height="..." data-crop="fit" public-id="cloudinaryPublicId"/>
      *
      */
     .directive('clImage', function() {
