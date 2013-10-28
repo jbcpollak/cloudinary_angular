@@ -87,9 +87,16 @@
 
                         var wrapWithApply = function(callback) {
                             return function(e, cbdata) {
+                              var phase = scope.$root.$$phase;
+                              if (phase == "$apply")
+                              {
+                                callback(e, cbdata);
+                              } else {
                                 scope.$apply(function() {
                                     callback(e, cbdata);
                                 });
+                              }
+                              
                             }
                         }
                         // This wraps each function in data with an angular $apply()
