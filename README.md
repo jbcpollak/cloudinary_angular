@@ -93,7 +93,7 @@ after you have retrieved signed params.
 ````javascript
 cloudinaryData = {
     url: https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/auto/upload
-    params : {
+    formData: {
         timestamp : 1375363550;
         tags : sampleTag,
         api_key : YOUR_API_KEY,
