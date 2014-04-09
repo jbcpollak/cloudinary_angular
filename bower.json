@@ -1,0 +1,22 @@
+{
+  "name": "cloudinary_angular",
+  "version": "0.0.4",
+  "homepage": "https://github.com/jbcpollak/cloudinary_angular",
+  "authors": [
+    "Joshua Chaitin-Pollak <josh@offthehill.org>"
+  ],
+  "description": "Angular Directives for Cloudinary",
+  "main": "js/angular.cloudinary.js",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "keywords": [
+    "cloudinary",
+    "angular"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "cloudinary_js": "git://github.com/cloudinary/cloudinary_js#v1.0.12"
+  }
+}
