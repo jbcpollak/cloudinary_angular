@@ -119,7 +119,11 @@
 
         };
     })
-    .config(function() {
-        $.cloudinary.config(CLOUDINARY_CONFIG);
+    .run(function($window) {
+      // This initializes cloudinary_js iff the global CLOUDINARY_CONFIG is defined.
+      // Otherwise, if CLOUDINARY_CONFIG is not defined the application must manually init cloudinary_js.
+      if ($window.CLOUDINARY_CONFIG) {
+        $.cloudinary.config($window.CLOUDINARY_CONFIG);
+      }
     });
 }));
