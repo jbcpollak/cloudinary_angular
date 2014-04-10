@@ -1,6 +1,6 @@
 {
   "name": "cloudinary_angular",
-  "version": "0.0.4",
+  "version": "0.0.5-SNAPSHOT",
   "homepage": "https://github.com/jbcpollak/cloudinary_angular",
   "authors": [
     "Joshua Chaitin-Pollak <josh@offthehill.org>"
