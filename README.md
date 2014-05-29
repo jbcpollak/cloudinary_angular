@@ -5,6 +5,8 @@ Angular Directives for Cloudinary
 
 This library can be used as an AMD module or as a standard JS file.
 
+Now that Cloudinary offers an [official Angular library](https://github.com/cloudinary/cloudinary_angular), please consider this library deprecated.
+
 ## Setup ######################################################################
 
 It would be helpful if you are familiar with the usage of Cloudinary already.
