@@ -4,7 +4,8 @@ cloudinary_angular
 Angular Directives for Cloudinary
 
 **Deprecated** 
-Cloudinary now offers an [official Angular library](https://github.com/cloudinary/cloudinary_angular), please consider this library deprecated.
+
+Cloudinary now offers an [official Angular library](https://github.com/cloudinary/cloudinary_angular), please use their library for new projects.
 
 This library can be used as an AMD module or as a standard JS file.
 
